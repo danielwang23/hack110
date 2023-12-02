@@ -7,7 +7,7 @@ import os
 
 # The purpose of the flask file is to create a dynamic page, otherwise if you just used a href to index2.html it would just be a static page
 
-app: Flask = Flask(__name__)
+app: Flask = Flask(__name__, static_folder='/Users/danielwang/hack110/pictures')
  
 @app.route("/")
 def index():
@@ -59,7 +59,7 @@ def upload_file():
         color_as_a_string = convert_rgb_to_names(dominant_color)
 
         # return f'File uploaded successfully: {filename}'
-        return render_template('index2.html', dominant_color_string = color_as_a_string, filename = filename)
+        return render_template('index2.html', dominant_color_string = color_as_a_string, filename = "/pictures/" + filename)
 
 if __name__ == '__main__':
     app.run(debug=True)
