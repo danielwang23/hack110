@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel='stylesheet' href='../static/styles.css'/>
+        <meta charset="UTF-8">
+        <title>Intro to Web Dev!</title>
+        <title>Image Upload</title>
+    </head>
+    <body>
+        <h2>Upload and Display Image</h2>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="fileInput" id="fileInput">
+            <input type="submit" value="Upload">
+        </form>
+        <div>
+            <img id="uploadedImage" style="max-width: 300px; max-height: 300px;">
+        </div>
+
+        <a href="/color">Get Color Page</a> 
+        <!--The route /color is defined in the app.py file so you can just set href = /color instead of index2.html-->
+
+    </body>
+</html>
