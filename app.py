@@ -36,7 +36,7 @@ def convert_rgb_to_names(rgb_tuple):
     distance, index = kdt_db.query(rgb_tuple)
     return f'closest match: {names[index]}'
 
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'pictures'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/upload', methods=['POST'])
@@ -51,14 +51,15 @@ def upload_file():
 
     if file:
         filename = file.filename
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        print(f'File uploaded successfully: {filename}')
+        # file.save(filename)
+        
  
-        ct = ColorThief(filename)
+        ct = ColorThief(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         dominant_color = ct.get_color(quality = 1)
         color_as_a_string = convert_rgb_to_names(dominant_color)
 
-        return render_template('index2.html', dominant_color_string = color_as_a_string)
+        # return f'File uploaded successfully: {filename}'
+        return render_template('index2.html', dominant_color_string = color_as_a_string, filename = filename)
 
 if __name__ == '__main__':
     app.run(debug=True)
